@@ -1,0 +1,6 @@
+root = true
+
+[*.{kt,kts}]
+# On autorise les underscores dans les noms de package (core_domain, core_data, etc.)
+ktlint_standard_package-name = disabled
+

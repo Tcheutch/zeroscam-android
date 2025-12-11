@@ -8,7 +8,7 @@ data class Subscription(
     val plan: SubscriptionPlan,
     val status: SubscriptionStatus,
     val startedAt: Instant,
-    val expiresAt: Instant?
+    val expiresAt: Instant?,
 ) {
     fun isActive(now: Instant = Instant.now()): Boolean {
         return status == SubscriptionStatus.ACTIVE &&
