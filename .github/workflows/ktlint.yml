@@ -1,0 +1,19 @@
+# .github/workflows/ktlint.yml
+name: Ktlint Check
+on: [push, pull_request]
+jobs:
+  ktlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+      - name: Run ktlint
+        run: ./gradlew ktlintCheck
+      - name: Auto-fix if needed
+        if: failure()
+        run: |
+          ./gradlew ktlintFormat
+          git diff --exit-code || (echo "Ktlint fixes needed" && exit 1)
