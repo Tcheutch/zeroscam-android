@@ -12,6 +12,7 @@ import org.junit.Assert.assertNull
 import org.junit.Test
 
 class RecordUserFeedbackUseCaseTest {
+
     @Test
     fun `records feedback with proper epoch and sanitization`() {
         val repo = InMemoryUserFeedbackRepository()
@@ -69,7 +70,7 @@ class RecordUserFeedbackUseCaseTest {
                 channel = DetectionChannel.CALL,
                 isScam = false,
                 label = FeedbackLabel.FALSE_POSITIVE,
-                comment = "   ",
+                comment = "   ", // blanc → doit devenir null
             )
 
         val saved = repo.lastSavedFeedback
@@ -82,7 +83,7 @@ class RecordUserFeedbackUseCaseTest {
         assertEquals(false, saved.isScam)
         assertEquals(FeedbackLabel.FALSE_POSITIVE, saved.label)
 
-        // Commentaire blanc→ null
+        // Commentaire blanc → null
         assertNull(saved.comment)
 
         // createdAt auto-généré mais cohérent avec epochSeconds
@@ -97,6 +98,7 @@ class RecordUserFeedbackUseCaseTest {
     // ---------------------------------------------------------------------
 
     private class InMemoryUserFeedbackRepository : UserFeedbackRepository {
+
         var lastSavedFeedback: DetectionFeedback? = null
             private set
 
