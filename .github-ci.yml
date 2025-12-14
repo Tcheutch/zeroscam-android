@@ -1,0 +1,20 @@
+# .github-ci.yml
+stages:
+  - auto-correct
+  - validate
+
+auto-correct-ktlint:
+  stage: auto-correct
+  script:
+    - ./devops_auto_corrector.sh
+  artifacts:
+    paths:
+      - ktlint_correction_report.md
+      - /tmp/ktlint_backup_*/
+
+validate-kotlin:
+  stage: validate
+  script:
+    - ./gradlew :core-domain:compileKotlin :core-domain:ktlintCheck
+  needs:
+    - auto-correct-ktlint

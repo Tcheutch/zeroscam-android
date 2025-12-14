@@ -38,6 +38,7 @@ class AnalyzeIncomingMessageUseCase(
     private val threatIntelRepository: ThreatIntelRepository,
     private val detectionLogRepository: DetectionLogRepository,
 ) {
+
     /**
      * Point d’entrée principal.
      */
@@ -136,7 +137,9 @@ class AnalyzeIncomingMessageUseCase(
      *  - [REASON_SENDER_KNOWN_SCAM]
      *  - [REASON_URL_KNOWN_SCAM]
      */
-    private fun escalateForKnownScamIndicators(currentResult: DetectionResult): DetectionResult {
+    private fun escalateForKnownScamIndicators(
+        currentResult: DetectionResult,
+    ): DetectionResult {
         val reasons = currentResult.reasons.toSet()
 
         val hasScamSender = reasons.contains(REASON_SENDER_KNOWN_SCAM)
@@ -201,7 +204,9 @@ class AnalyzeIncomingMessageUseCase(
      *  - [REASON_SUSPICIOUS_LINK_PATTERN]
      *  - [REASON_MESSAGE_CONTENT_ANOMALY]
      */
-    private fun escalateForContentSignals(currentResult: DetectionResult): DetectionResult {
+    private fun escalateForContentSignals(
+        currentResult: DetectionResult,
+    ): DetectionResult {
         val reasons = currentResult.reasons.toSet()
 
         val hasSuspiciousLink = reasons.contains(REASON_SUSPICIOUS_LINK_PATTERN)
@@ -358,7 +363,9 @@ class AnalyzeIncomingMessageUseCase(
     // Helpers
     // ---------------------------------------------------------------------
 
-    private fun bumpRisk(riskLevel: RiskLevel): RiskLevel =
+    private fun bumpRisk(
+        riskLevel: RiskLevel,
+    ): RiskLevel =
         when (riskLevel) {
             RiskLevel.LOW -> RiskLevel.MEDIUM
             RiskLevel.MEDIUM -> RiskLevel.HIGH
