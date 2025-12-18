@@ -1,15 +1,39 @@
+# --- IDE et Éditeurs ---
+.idea/
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+*.iws
+*.ipr
+
+# --- Fichiers de Backup et Temporaires ---
+*.bak
+*.backup*
+*.tmp
+*.swp
+*.devsecops_backup
+
+# --- Fichiers Système ---
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+Thumbs.db
+
+# --- Gradle ---
+.gradle/
+build/
+out/
+bin/
+!gradle/wrapper/gradle-wrapper.jar
+
+# --- Local ---
 local.properties
+*.keystore
+*.jks
+
+# --- Logs ---
+*.log
+logs/
+
+# --- Environnements ---
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
