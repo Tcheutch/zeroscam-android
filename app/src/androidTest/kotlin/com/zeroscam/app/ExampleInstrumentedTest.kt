@@ -1,4 +1,4 @@
-package com.zeroscam.myapp
+package com.zeroscam.app
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -10,8 +10,8 @@ import org.junit.runner.RunWith
 class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
-        val appContext =
-            InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.zeroscam.myapp", appContext.packageName)
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        // ⚠️ doit matcher applicationId dans build.gradle.kts
+        assertEquals("com.zeroscam.app", appContext.packageName)
     }
 }
