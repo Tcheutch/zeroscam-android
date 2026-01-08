@@ -1,4 +1,4 @@
-package com.zeroscam.myapp
+package com.zeroscam.app
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
